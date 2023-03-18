@@ -1,0 +1,273 @@
+<!--
+Mobile web development 
+Template for General purpose html5 page with JQuery Mobile
+Created by: Boa Im
+email:      bim1777@conestogac.on.ca
+Revision History:
+    Boa Im, 2023.02.14: Created
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BIFeedbackA2</title>
+
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery Mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery Mobile stylesheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+        <!--jQuery validation library-->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!--our scripts-->
+        <script src="js/BIDAL.js"></script>
+        <script src="js/BIdatabase.js"></script>
+        <script src="js/BIfacade.js"></script>
+        <script src="js/BIglobal.js"></script>
+        <script src="js/BIutil.js"></script>
+
+        <!--our style-->
+        <link rel="stylesheet" href="css/BImystyle.css">
+    </head>
+    <body>
+        <!--This is for Homepage-->
+        <div id="BIHomePage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>BI Feedback A2</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#BIHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a>
+                        </li>
+                        <li>
+                            <a href="#BIAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#BIViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#BISettingsPage" data-icon="gear">Settings</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <h3>Boa Im's Feedback A2 App</h3>
+                <p>Welcome to the Boa Im’s Feedback A1 app. A prototype designed for mobile programming class. This is
+                    the first iteration of the app to keep track of different places you visited along with your
+                    reviews</p>
+                <img src="img/BI-image.png" alt="Penguin" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+                <p>Please feel free to contact me if you have any suggestions!</p>
+
+                <a href="#" data-role="button" data-icon="plus">Call: 519.748.5220</a>
+                <a href="#" data-role="button" data-icon="plus">bim1777@conestogac.on.ca</a>
+                <p>Website:</p>
+                <a href="#" data-role="button" data-icon="plus">Conestoga College</a>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Boa Im </h1>
+            </footer>
+        </div>
+
+        <!--This is for AddFeedbackPage-->
+        <div id="BIAddFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Add a Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#BIHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#BIAddFeedbackPage" data-icon="plus" class="ui-btn-active ui-state-persist">Add</a>
+                        </li>
+                        <li>
+                            <a href="#BIViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#BISettingsPage" data-icon="gear">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <form id="formAdd" name="formAdd" data-ajax="false">
+                    <label for="txtName">Business Name: </label>
+                    <input type="text" id="txtName" name="txtName" data-theme="a">
+                    <label for="cmbType">Type: </label>
+                    <select id="cmbType" name="cmbType" data-native-menu="false">
+                        <option value="Other" selected>Other</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Asian">Asian</option>
+                    </select>
+                    <label for="txtEmail">Reviewer Email: </label>
+                    <input type="text" id="txtEmail" name="txtEmail" data-theme="a">
+                    <label for="txtComments">Reviewer Comments: </label>
+                    <textarea id="txtComments" name="txtComments" data-theme="a"></textarea>
+                    <label for="visitingDate">Review Date: </label>
+                    <input type="date" id="visitingDate" name="visitingDate" data-date="" data-date-format="DD-MMM-YYYY">
+                    <input type="checkbox" id="cbRating" name="cbRating">
+                    <label for="cbRating">Do you want to add your ratings?</label>
+                    <div class="ratings">
+                        <label for="numQuality">Food Quality (0-5)</label>
+                        <input type="number" id="numQuality" name="numQuality" data-theme="a" value="0">
+                        <label for="numService">Service (0-5)</label>
+                        <input type="number" id="numService" name="numService" data-theme="a" value="0">
+                        <label for="numValue">Value (0-5)</label>
+                        <input type="number" id="numValue" name="numValue" data-theme="a" value="0">
+                        <label for="txtOverall">Overall Rating (calculated)</label>
+                        <input type="text" id="txtOverall" name="txtOverall" data-theme="a" disabled>
+                    </div>
+                    <button class="ui-btn-active" id="btnSave" name="btnSave" data-theme="a" style="width: 20%">Save</button>
+                </form>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Boa Im </h1>
+            </footer>
+        </div>
+
+        <!--This is for ViewFeedbackPage-->
+        <div id="BIViewFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>List of Reviews</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#BIHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#BIAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#BIViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#BISettingsPage" data-icon="gear">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <ul id="ListViewFeedback" data-role="listview" class="ui-listview-inset">
+                    <li>
+                        <a href="#BIModifyFeedbackPage" data-theme="a">
+                            <h3>Business Name: Pur and Simple</h3>
+                            <p>Reviewer Email: ps12@gmail.com</p>
+                            <p>Comments: This is very good place to have a brunch!!</p>
+                            <p>Overall Rating: 80%</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#BIModifyFeedbackPage" data-theme="a">
+                            <h3>Business Name: Korner Kitchen</h3>
+                            <p>Reviewer Email: kk23@gmail.com</p>
+                            <p>Comments: Good price, good taste and good location</p>
+                            <p>Overall Rating: 90%</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Boa Im </h1>
+            </footer>
+        </div>
+
+        <!--This is for ModifyFeedbackPage-->
+        <div id="BIModifyFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Modify Feedback</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#BIHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#BIAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#BIViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#BISettingsPage" data-icon="gear">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <form id="formModify" name="formModify" data-ajax="false">
+                    <label for="txtDefaultName">Business Name: </label>
+                    <input type="text" id="txtDefaultName" name="txtDefaultName" data-theme="a" value="Pur and Simple">
+                    <label for="cmbDefaultType">Type: </label>
+                    <select id="cmbDefaultType" name="cmbDefaultType" data-native-menu="false">
+                        <option value="Other">Other</option>
+                        <option value="Canadian" selected>Canadian</option>
+                        <option value="Asian">Asian</option>
+                    </select>
+                    <label for="txtDefaultEmail">Reviewer Email: </label>
+                    <input type="text" id="txtDefaultEmail" name="txtDefaultEmail" data-theme="a" value="ps12@gmail.com">
+                    <label for="txtDefaultComments">Reviewer Comments: </label>
+                    <textarea id="txtDefaultComments" name="txtDefaultComments" data-theme="a">This is very good place to have a brunch!!</textarea>
+                    <label for="visitingDefaultDate">Review Date: </label>
+                    <input type="date" id="visitingDefaultDate" name="visitingDefaultDate" value="2021-02-16">
+                    <input type="checkbox" id="cbDefaultRating" name="cbDefaultRating" checked>
+                    <label for="cbDefaultRating">Do you want to add your ratings?</label>
+                    <div class="ratings" id="defaultRating">
+                        <label for="numDefaultQuality">Food Quality (0-5)</label>
+                        <input type="number" id="numDefaultQuality" name="numDefaultQuality" data-theme="a" value="2">
+                        <label for="numDefaultService">Service (0-5)</label>
+                        <input type="number" id="numDefaultService" name="numDefaultService" data-theme="a" value="2">
+                        <label for="numDefaultValue">Value (0-5)</label>
+                        <input type="number" id="numDefaultValue" name="numDefaultValue" data-theme="a" value="2">
+                        <label for="txtDefaultOverall">Overall Rating (calculated)</label>
+                        <input type="text" id="txtDefaultOverall" name="txtDefaultOverall" data-theme="a" value="47%" disabled>
+                    </div>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <button id="btnCancel" name="btnCancel" data-theme="a">Cancel</button>
+                        <button id="btnDelete" name="btnDelete" data-theme="b">Delete</button>
+                        <button class="ui-btn-active" id="btnUpdate" name="btnUpdate">Update</button>
+                    </fieldset>
+                </form>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Boa Im </h1>
+            </footer>
+        </div>
+
+        <!--This is for SettingsPage-->
+        <div id="BISettingsPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Settings</h1>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#BIHomePage" data-icon="home">Home</a>
+                        </li>
+                        <li>
+                            <a href="#BIAddFeedbackPage" data-icon="plus">Add</a>
+                        </li>
+                        <li>
+                            <a href="#BIViewFeedbackPage" data-icon="grid">Reviews</a>
+                        </li>
+                        <li>
+                            <a href="#BISettingsPage" data-icon="gear" class="ui-btn-active ui-state-persist">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <section data-role="content">
+                <form id="formDefault" name="formDefault" data-ajax="false">
+                    <label for="txtDefault">Default Reviewer Email</label>
+                    <input type="text" id="txtDefault" name="txtDefault" data-theme="a" value="bim1777@conestogac.on.ca">
+                    <button class="ui-btn-active" id="btnSaveDefaults" name="btnSaveDefaults">Save Defaults</button>
+                    <button id="btnClear" name="btnClear" data-theme="b">Clear Database</button>
+                </form>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Boa Im </h1>
+            </footer>
+        </div>
+    </body>
+</html>

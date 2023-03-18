@@ -1,0 +1,17 @@
+/**
+ * File Name: BImystyle.css
+ *
+ * Revision History:
+ *       Boa Im, 2023-02-14: Created
+ */
+
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px red solid;
+}
