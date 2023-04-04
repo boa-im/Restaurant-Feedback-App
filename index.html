@@ -5,13 +5,14 @@ Created by: Boa Im
 email:      bim1777@conestogac.on.ca
 Revision History:
     Boa Im, 2023.02.14: Created
+    Boa Im, 2023.03.21: Added codes
 -->
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>BIFeedbackA2</title>
+        <title>BIFeedbackA3</title>
 
         <!--jQuery-->
         <script src="js/lib/jquery-2.1.4.js"></script>
@@ -36,7 +37,7 @@ Revision History:
         <!--This is for Homepage-->
         <div id="BIHomePage" data-role="page">
             <header data-role="header" data-position="fixed" data-theme="a">
-                <h1>BI Feedback A2</h1>
+                <h1>BI Feedback A3</h1>
                 <div data-role="navbar" data-iconpos="top">
                     <ul>
                         <li>
@@ -55,7 +56,7 @@ Revision History:
                 </div>
             </header>
             <section data-role="content">
-                <h3>Boa Im's Feedback A2 App</h3>
+                <h3>Boa Im's Feedback A3 App</h3>
                 <p>Welcome to the Boa Im’s Feedback A1 app. A prototype designed for mobile programming class. This is
                     the first iteration of the app to keep track of different places you visited along with your
                     reviews</p>
@@ -99,9 +100,7 @@ Revision History:
                     <input type="text" id="txtName" name="txtName" data-theme="a">
                     <label for="cmbType">Type: </label>
                     <select id="cmbType" name="cmbType" data-native-menu="false">
-                        <option value="Other" selected>Other</option>
-                        <option value="Canadian">Canadian</option>
-                        <option value="Asian">Asian</option>
+
                     </select>
                     <label for="txtEmail">Reviewer Email: </label>
                     <input type="text" id="txtEmail" name="txtEmail" data-theme="a">
@@ -111,7 +110,7 @@ Revision History:
                     <input type="date" id="visitingDate" name="visitingDate" data-date="" data-date-format="DD-MMM-YYYY">
                     <input type="checkbox" id="cbRating" name="cbRating">
                     <label for="cbRating">Do you want to add your ratings?</label>
-                    <div class="ratings">
+                    <div id="Rating">
                         <label for="numQuality">Food Quality (0-5)</label>
                         <input type="number" id="numQuality" name="numQuality" data-theme="a" value="0">
                         <label for="numService">Service (0-5)</label>
@@ -202,9 +201,6 @@ Revision History:
                     <input type="text" id="txtDefaultName" name="txtDefaultName" data-theme="a" value="Pur and Simple">
                     <label for="cmbDefaultType">Type: </label>
                     <select id="cmbDefaultType" name="cmbDefaultType" data-native-menu="false">
-                        <option value="Other">Other</option>
-                        <option value="Canadian" selected>Canadian</option>
-                        <option value="Asian">Asian</option>
                     </select>
                     <label for="txtDefaultEmail">Reviewer Email: </label>
                     <input type="text" id="txtDefaultEmail" name="txtDefaultEmail" data-theme="a" value="ps12@gmail.com">
@@ -214,19 +210,25 @@ Revision History:
                     <input type="date" id="visitingDefaultDate" name="visitingDefaultDate" value="2021-02-16">
                     <input type="checkbox" id="cbDefaultRating" name="cbDefaultRating" checked>
                     <label for="cbDefaultRating">Do you want to add your ratings?</label>
-                    <div class="ratings" id="defaultRating">
+                    <div id="defaultRating">
                         <label for="numDefaultQuality">Food Quality (0-5)</label>
-                        <input type="number" id="numDefaultQuality" name="numDefaultQuality" data-theme="a" value="2">
+                        <input type="number" id="numDefaultQuality" name="numDefaultQuality" data-theme="a" value="0">
                         <label for="numDefaultService">Service (0-5)</label>
-                        <input type="number" id="numDefaultService" name="numDefaultService" data-theme="a" value="2">
+                        <input type="number" id="numDefaultService" name="numDefaultService" data-theme="a" value="0">
                         <label for="numDefaultValue">Value (0-5)</label>
-                        <input type="number" id="numDefaultValue" name="numDefaultValue" data-theme="a" value="2">
+                        <input type="number" id="numDefaultValue" name="numDefaultValue" data-theme="a" value="0">
                         <label for="txtDefaultOverall">Overall Rating (calculated)</label>
-                        <input type="text" id="txtDefaultOverall" name="txtDefaultOverall" data-theme="a" value="47%" disabled>
+                        <input type="text" id="txtDefaultOverall" name="txtDefaultOverall" data-theme="a" value="" disabled>
                     </div>
                     <fieldset data-role="controlgroup" data-type="horizontal">
-                        <button id="btnCancel" name="btnCancel" data-theme="a">Cancel</button>
+                        <a href="#" data-role="button" data-rel="back">Cancel</a>
+                        <div hidden>
+                            <button type="button" id="btnShowAll" name="btnShowAll" data-icon="grid" data-theme="b" hidden>Show All</button>
+                        </div>
                         <button id="btnDelete" name="btnDelete" data-theme="b">Delete</button>
+                        <div hidden>
+                            <button type="button" id="btnShow" name="btnShow" data-icon="minus" data-theme="b">Show one</button>
+                        </div>
                         <button class="ui-btn-active" id="btnUpdate" name="btnUpdate">Update</button>
                     </fieldset>
                 </form>
